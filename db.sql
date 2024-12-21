@@ -37,9 +37,9 @@ create table employee (
 );
 
 create table animal_caretaker (
+	id serial primary key,
     animal_id integer references animal(id),
-    employee_id integer references employee(id),
-    primary key (animal_id, employee_id)
+    employee_id integer references employee(id)
 );
 
 create table feed (
@@ -49,10 +49,10 @@ create table feed (
 );
 
 create table animal_feed (
+    id serial primary key,
     animal_id integer references animal(id),
     feed_id integer references feed(id),
-    daily_amount real,
-    primary key (animal_id, feed_id)
+    daily_amount real
 );
 
 create table offspring (
