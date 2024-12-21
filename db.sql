@@ -57,7 +57,8 @@ create table animal_feed (
 
 create table offspring (
     id serial primary key,
-    parent_id integer references animal(id),
+    mother_id integer references animal(id),
+    father_id integer references animal(id),
     name varchar(100),
     date_of_birth date,
     sex varchar(7)
