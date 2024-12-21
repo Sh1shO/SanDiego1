@@ -1,9 +1,9 @@
-create table species(
+create table species (
     id serial primary key,
     name varchar(100)
 );
 
-create table enclosure(
+create table enclosure (
     id serial primary key,
     name varchar(100),
     size real,
@@ -11,7 +11,7 @@ create table enclosure(
     description text
 );
 
-create table animal(
+create table animal (
     id serial primary key,
     name varchar(100),
     species_id integer references species(id),
@@ -21,9 +21,44 @@ create table animal(
     sex varchar(7)
 );
 
-create table health_record(
+create table health_record (
     id serial primary key,
     animal_id integer references animal(id),
     checkup_date date,
     notes text
+);
+
+create table employee (
+    id serial primary key,
+    name varchar(100),
+    position varchar(50),
+    phone varchar(15),
+    hire_date date
+);
+
+create table animal_caretaker (
+    animal_id integer references animal(id),
+    employee_id integer references employee(id),
+    primary key (animal_id, employee_id)
+);
+
+create table feed (
+    id serial primary key,
+    name varchar(100),
+    description text
+);
+
+create table animal_feed (
+    animal_id integer references animal(id),
+    feed_id integer references feed(id),
+    daily_amount real,
+    primary key (animal_id, feed_id)
+);
+
+create table offspring (
+    id serial primary key,
+    parent_id integer references animal(id),
+    name varchar(100),
+    date_of_birth date,
+    sex varchar(7)
 );
